@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-source "${BASH_SOURCE%/*}/vendor/bash-git-prompt/bash-git-prompt"
+# we need to expand symlinks
+expanded_path=$(realpath $BASH_SOURCE)
+source "${expanded_path%/*}/vendor/bash-git-prompt/bash-git-prompt"
+unset expanded_path
 
 # parameters:
 #   $1: chroot
