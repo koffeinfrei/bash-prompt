@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+source "${BASH_SOURCE%/*}/vendor/bash-git-prompt/bash-git-prompt"
+
+# parameters:
+#   $1: chroot
+set_bash_prompt() {
+    local chroot=$1
+
+    local color_path="\[\033[0;37m\033[01;2m\]"
+    local color_git="\[\033[01;22m\033[34m\]"
+    local color_space="\[\033[37m\]"
+    local color_icon="\[\033[1m\033[01;32m\]"
+    local color_reset="\[\033[00m\]"
+
+    case "$TERM" in
+        xterm-color|xterm|screen-256color) color_prompt=yes;;
+    esac
+
+    if [ "$color_prompt" = yes ] || [ "$COLORTERM" = truecolor ]; then
+        PS1="${chroot:+($chroot)}$color_path \w $color_git$(__git_ps1_improved)$color_space $color_icon➜$color_reset "
+    else
+        PS1="${chroot:+($chroot)} \w $(__git_ps1_improved) ➜ "
+    fi
+
+    unset color_prompt
+
+    # If this is an xterm set the title to user@host:dir
+    case "$TERM" in
+    xterm*|rxvt*)
+        PS1="\[\e]0;${chroot:+($chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
+    esac
+}
