@@ -1,6 +1,6 @@
 # Bash prompt
 
-Bash prompt written in pure bash script.
+Clean and minimal bash prompt written in pure bash script.
 
 ![Bash Git prompt](screenshot.png)
 
@@ -36,3 +36,11 @@ Alternatively, if you're using some sort of dotfiles, you can add this
 repository as a submodule to your dotfiles and source the script directly.
 [This is how I do
 it](https://github.com/koffeinfrei/dotfiles/blob/cdb8125b591d5e22c4f4457374fc83c482347c87/.bash_profile#L53-L54)
+
+## What it does
+
+1. Shows the current directory (with chroot support)
+1. Shows the git status
+1. Uses some nice colors
+1. Does not show any additional clutter as the user- and hostname. That's
+   information that I don't need on the terminal. It just wastes screen space.
