@@ -1,9 +1,19 @@
 #!/usr/bin/env bash
 
 # we need to expand symlinks
-expanded_path=$(realpath $BASH_SOURCE)
-source "${expanded_path%/*}/vendor/bash-git-prompt/bash-git-prompt"
-unset expanded_path
+current_dir=$(realpath $BASH_SOURCE)
+submodule_path="${current_dir%/*}/vendor/bash-git-prompt/bash-git-prompt"
+home_path="$HOME/.bash-git-prompt"
+
+if [[ -s $submodule_path ]]; then
+    source $submodule_path
+elif [[ -s $home_path ]]; then
+    source $home_path
+else
+    >&2 echo "Neither one of the two expected locations ($submodule_path, $home_path) contains the bash-git-prompt script."
+fi
+
+unset current_dir submodule_path home_path
 
 # parameters:
 #   $1: chroot
