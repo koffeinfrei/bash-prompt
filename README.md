@@ -5,7 +5,7 @@ Clean and minimal bash prompt written in pure bash script.
 ![Bash Git prompt](screenshot.png)
 
 This script depends on the [Git prompt for
-bash](https://github.com/koffeinfrei/bash-prompt)
+bash](https://github.com/koffeinfrei/bash-git-prompt)
 
 ## Usage
 
